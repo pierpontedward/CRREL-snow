@@ -1,0 +1,36 @@
+# Chan3ProcAll_cssl Configuration File
+# ================================
+
+# Input/output directories
+infolder: /data/raw
+savefolder: data/processednew
+
+# Filename pattern (for UHFLHCP_CH3_YYYYMMDDHHmmss_ch0/_ch1 format)
+prefix: UHFLHCP_CH3_
+suffix0: _ch0.dat
+suffix1: _ch1.dat
+
+# Processing parameters
+Ti: 0.9  #integration time - would change with llm / uum
+num: 2
+sample_rate: 20e6
+llm: 8997500       # Uncomment to trim lag range
+uum: 9002500
+
+# Signal processing
+window: hanning       # Options: none, hanning, hamming, blackman, blackmanharris, kaiser4
+zero_pad_factor: 1    # 1 = no padding, 2 = 2x zero-pad, etc.
+peak_lag: 0.575     # Fixed fractional lag to extract amplitude/phase at
+
+# Performance
+fft_workers: -1       # -1 = all CPU cores
+
+# Logging
+verbose: false
+# log: processing.log  # Uncomment to log to file
+
+# Output
+summary_csv: true     # Write summary CSV
+time_series_plot: true # Generate time-series plot
+save_plots: false      # Save correlation plot per file pair (to <savefolder>/plots/)
+rerun: true           # Reprocess files even if output already exists
