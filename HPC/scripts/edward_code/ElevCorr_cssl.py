@@ -19,7 +19,6 @@ from skyfield.api import load, wgs84
 from spacetrack import SpaceTrackClient
 
 def load_config(config_path):
-    """Loads YAML config"""
     with open("config.yaml", "r") as f:
         return yaml.safe_load(f)
 
@@ -44,8 +43,7 @@ def main():
     ST_PASSWORD = os.environ.get('SPACETRACK_PWD')
     
     if not ST_USERNAME or not ST_PASSWORD:
-        raise ValueError("CRITICAL: Space-Track credentials not found in environment variables. "
-                         "Please 'export SPACETRACK_USER' and 'export SPACETRACK_PWD' before running.")
+        raise ValueError("Space-Track credentials not found in environment variables. ")
     
     df = pd.read_csv(INPUT_CSV)
     df['timestamp'] = pd.to_datetime(df['timestamp']).dt.tz_localize('UTC')
